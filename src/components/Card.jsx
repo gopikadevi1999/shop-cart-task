@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
-function Card({cart,setCart}) {  
+function Card({ cart, setCart }) {
+    const [toggle, setToggle] = useState(true)
     return <>
         <div className="col mb-5">
             <div className="card h-100">
@@ -14,10 +15,19 @@ function Card({cart,setCart}) {
                     </div>
                 </div>
                 <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    <div className="text-center"><button className="btn btn-outline-dark mt-auto" onClick={()=>{setCart(cart+1)}}>Add to cart</button></div>
-                </div>
-                <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    <div className="text-center"><button className="btn btn-outline-dark mt-auto" onClick={()=>{setCart(cart-1)}}>Remove from cart</button></div>
+                    <div className="text-center">
+                        {
+                            toggle ?<button className="btn btn-outline-dark mt-auto" onClick={()=>{
+                            setCart(cart+1)
+                            setToggle(false)
+                            }}>Add to cart</button>:
+            
+                        <button className="btn btn-outline-dark mt-auto" onClick={()=>{
+                            setCart(cart-1)
+                            setToggle(true)
+                            }}>Remove from cart</button>
+                        }
+                    </div>
                 </div>
             </div>
         </div>
